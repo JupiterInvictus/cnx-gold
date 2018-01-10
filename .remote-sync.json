@@ -2,8 +2,8 @@
   "uploadOnSave": true,
   "useAtomicWrites": false,
   "deleteLocal": false,
-  "hostname": "azaq.saettem.com",
-  "target": "/var/www/html/gold.locked",
+  "hostname": "saettem.com",
+  "target": "/var/www/html/gold",
   "ignore": [
     "reports/**",
     "icons/**",
