@@ -1,0 +1,16 @@
+{
+  "uploadOnSave": true,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "azaq.saettem.com",
+  "target": "/var/www/html/gold.locked",
+  "ignore": [
+    "reports/**",
+    "icons/**",
+    "ranks/**"
+  ],
+  "username": "jsa",
+  "password": "Diaphanous0!",
+  "watch": [],
+  "transport": "scp"
+}
