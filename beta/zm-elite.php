@@ -4,7 +4,7 @@ function show_module() {
 
 	// if a team has been specified, only show elites in that team.
 	if ($team > 0) {
-		echo "<h2>Team " . getteamname($team) . "</h2>";
+		echo "<h1>Team " . getteamname($team) . "</h1>";
 	}
 
 	$statement = "SELECT id, title, left_or_right FROM titles";

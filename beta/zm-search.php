@@ -3,7 +3,7 @@ function show_module() {
 	global $db, $_GET, $a, $b, $c, $d, $e, $f, $team, $sqldater, $teamdefinition, $contract, $startdate, $enddate;
 		// big input field
 		if (isset($_GET[search])) { $search = $_GET[search]; }
-		echo "<form><input size=30 id='searchfield' name='search' value='$search' autofocus><input type=submit value='Search'>
+		echo "<form><input size=30 id='searchfield' name='search' value='$search' autofocus><button type=submit>Search</button>
 		<input type=hidden name='a' value=search>
 		</form>";
 		if (isset($_GET[search])){

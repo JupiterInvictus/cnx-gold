@@ -14,13 +14,13 @@ $time = time();
 global $teamdefinition, $ahtteamdefinition;
 
 $application_name = "Concentrix Global Online Leader Dashboard";
-$application_copyright = "Copyright Concentrix Europe Ltd 2017";
+$application_copyright = "Copyright Concentrix Europe Ltd 2018";
 $application_contact = "joakim.saettem@concentrix.com";
 
 $time = $_SERVER[‘REQUEST_TIME’];
 
-$application_version_major = "2017-12-19";
-$application_version_minor = "10:27";
+$application_version_major = "2018-01-10";
+$application_version_minor = "16:48";
 
 $bad_color = 'd7191c';
 $good_color = 'ffffbf';
@@ -45,6 +45,7 @@ echo "
     <title>{$application_name}</title>
 	</head>
 	<body>";
+
 if ($_POST[a]=='upload'){
 	if(isset($_FILES['filedata'])){
 		$target_dir = "reports/";
@@ -211,8 +212,8 @@ else {
 		echo "<div title='Next month' class='nextmonth$small'><a href='?$fullparams&startdate=$nextmonth&enddate=$nextend'><div class='fa fa-3x fa-arrow-right'></div></a></div>";
 
 		// Pick preferred team
-		echo "<div class='preferred-team-title'>Team:</div>";
-		echo "<div class='preferred_team'><select onChange='location.href=\"?$fullparams$extraurl&startdate=$startdate&enddate=$enddate&team=\" + this.value + \"&prefteam=\" + this.value;' name='prefteam'>";
+		echo "<div class='preferred-team'>Team ";
+		echo "<select onChange='location.href=\"?$fullparams$extraurl&startdate=$startdate&enddate=$enddate&team=\" + this.value + \"&prefteam=\" + this.value;' name='prefteam'>";
 		echo "<option value='-1'>Belfast</option>";
 		$sql = "SELECT id,team_name FROM teams LIMIT 50";
 		if(!$result=$db->query($sql)){cl($sql);cl($db->error);}
@@ -226,8 +227,8 @@ else {
 		echo "</div>";
 		echo "<div class='currentmonth'><a href='?$fullparams&startdate=$currentyear-$currentmonth-01&enddate=$currentyear-$currentmonth-$lastday&sub=Current%20Month'>Current Month</a></div>";
 
-		echo "<div class='startdatepicker'>Start date: <input class=startdate id=startdate name=startdate type=date value='$startdate' onChange='location.href=\"?a=$a&b=$b&c=$c&d=$d&team=$team&enddate=$enddate&startdate=\"+this.value;'></div>";
-		echo "<div class='enddatepicker'>End date: <input class=enddate id=enddate name=enddate type=date value='$enddate' onChange='location.href=\"?a=$a&b=$b&c=$c&d=$d&team=$team&startdate=$startdate&enddate=\"+this.value;'></div>";
+		echo "<div class='startdatepicker'>Start date <input class=startdate id=startdate name=startdate type=date value='$startdate' onChange='location.href=\"?a=$a&b=$b&c=$c&d=$d&team=$team&enddate=$enddate&startdate=\"+this.value;'></div>";
+		echo "<div class='enddatepicker'>End date <input class=enddate id=enddate name=enddate type=date value='$enddate' onChange='location.href=\"?a=$a&b=$b&c=$c&d=$d&team=$team&startdate=$startdate&enddate=\"+this.value;'></div>";
 		$teamdefinition='';
 		if ($team){
 			$sql = "SELECT * FROM team_data_definitions WHERE team_id = $team";
@@ -252,11 +253,12 @@ else {
 
 		}
 		echo "<div class='new-logo'>
-			<div class='logo-text'><a href='./?'>gold</a></div>
+			<div class='logo-text' title='Global Online Leadership Dashboard'><a href='./?'>gold</a></div>
 			<div class='logo-colors'>
 				<div class='logo-green'></div>
 				<div class='logo-amber'></div>
 				<div class='logo-red'></div>
+				<div class='gold-ball'></div>
 			</div>
 		</div>";
 		if ($a=='') { $a = 'dashboard'; }
@@ -315,6 +317,37 @@ else {
 			echo "</div>";
 		}
 	}
+}
+
+// Change topbar colors based on team.
+$page_fgcolor = g("teams","team_fgcolor",$team);
+$page_bgcolor = g("teams","team_bgcolor",$team);
+
+if ($page_bgcolor && $page_fgcolor) {
+	echo "<script>";
+	echo "document.getElementsByClassName('page-bar-top')[0].style.background = '#$page_bgcolor';";
+	echo "document.getElementsByClassName('page-bar-top')[0].style.color = '#$page_fgcolor';";
+
+//	echo "document.getElementsByClassName('div_left_areasmall')[0].style.background = '#$page_fgcolor';";
+//	echo "document.getElementsByClassName('div_left_areasmall')[0].style.color = '#$page_bgcolor';";
+
+/*	echo "
+	var input = document.getElementsByTagName('INPUT');
+	input = Array.prototype.slice.call(input);
+	input.forEach(function(e) {
+		e.style.background = '#$page_fgcolor';
+		e.style.color = '#$page_bgcolor';
+	});
+
+	var input = document.getElementsByTagName('select');
+	input = Array.prototype.slice.call(input);
+	input.forEach(function(e) {
+		e.style.background = '#$page_fgcolor';
+		e.style.color = '#$page_bgcolor';
+	});
+	";
+	*/
+	echo "</script>";
 }
 
 echo "</body></html>";

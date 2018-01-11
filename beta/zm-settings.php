@@ -23,7 +23,7 @@ function show_module() {
 					echo "<form>
 					Region name: <input name='region_name'><br>
 					<input name=a value=settings type=hidden><input name=b value=add_region type=hidden>
-					<input type=submit></form><br>";
+					<button type='submit'>Add</button></form><br>";
 				}
 			}
 		}
@@ -51,7 +51,7 @@ function show_module() {
 					}
 					echo "</select><br>
 					<input name=a value=settings type=hidden><input name=b value=add_metric type=hidden>
-					<input type=submit></form><br>";
+					<button type=submit>Add</button></form><br>";
 				}
 			}
 		}
@@ -83,7 +83,7 @@ function show_module() {
 					echo "<form>
 					user name: <input name='user_name'><br>
 					<input name=a value=settings type=hidden><input name=b value=add_user type=hidden>
-					<input type=submit></form><br>";
+					<button type=submit>Add</button></form><br>";
 				}
 			}
 		}
@@ -95,38 +95,16 @@ function show_module() {
 
 		if (isadmin()){
 			echo "<h1>Data</h1>";
-			echo "Upload a Medallia report.";
+			echo "<h3>Upload a Medallia report.</h3>";
 			echo "<form name=uploadform method=post enctype='multipart/form-data'>
 			<input type=hidden name=a value=upload>
 			<input type=file name='filedata' id='filedata'>
-			<input type=submit></form>";
+			<button type=submit>Upload Medallia export</button></form>";
 
-/*				echo "Upload a PRT060 report for individual AHT, volumes and RCR.";
-			echo "<form name=uploadformaht method=post enctype='multipart/form-data'>
-			<input type=hidden name=a value=uploadaht>
-			<input type=file name='filedataaht' id='filedataaht'>
-			<input type=submit></form>
-			";
-*/
-			echo "Upload a VM055p report for team AHT & TR.";
-			echo "<form name=uploadformvm method=post enctype='multipart/form-data'>
-			<input type=hidden name=a value=uploadvm055p>
-			<input type=file name='filedatavm' id='filedatavm'>
-			<input type=submit></form>
-			";
-/*
-			echo "Upload a PRT073 report for team RCR.";
-			echo "<form name=uploadformprt073 method=post enctype='multipart/form-data'>
-			<input type=hidden name=a value=uploadprt073>
-			<input type=file name='filedataprt073' id='filedataprt073'>
-			<input type=submit></form>
-			";
-*/
-			echo "<hr><b>General PRT report uploader.</b> <a href='?a=settings&x=clear060'>Clear 060 data</a> |
-			<a href='?a=settings&x=clear073'>Clear 073 data</a>";
+			echo "<h3>General PRT report uploader.</h3>";
 			echo "<form name=uploadformprtgeneral method=post enctype='multipart/form-data'>
 			<input type=hidden name=a value=uploadprtgeneral>
 			<input type=file name='filedataprtgeneral' id='filedataprtgeneral'>
-			<input type=submit></form>";
+			<button type=submit>Upload PRT073 or PRT060</button></form>";
 		}
 	}
