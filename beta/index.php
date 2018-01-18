@@ -328,6 +328,8 @@ if ($page_bgcolor && $page_fgcolor) {
 	echo "document.getElementsByClassName('page-bar-top')[0].style.background = '#$page_bgcolor';";
 	echo "document.getElementsByClassName('page-bar-top')[0].style.color = '#$page_fgcolor';";
 
+	echo "document.getElementsByClassName('page-bar-top')[0].style.borderBottom = '10px solid #$page_fgcolor';";
+
 //	echo "document.getElementsByClassName('div_left_areasmall')[0].style.background = '#$page_fgcolor';";
 //	echo "document.getElementsByClassName('div_left_areasmall')[0].style.color = '#$page_bgcolor';";
 

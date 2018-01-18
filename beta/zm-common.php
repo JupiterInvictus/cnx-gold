@@ -9,7 +9,7 @@
 	1.3.2		2017-10-04									function vm now returns n/a instead of 0 if there is no value.
 	1.3.3		2017-10-13									function vm will now return data from prt073 as backup.
 	1.3.4		2017-11-27									added function showphoto to determine if photos should be shown.
-	1.3.5		2018-01-10									
+	1.3.5		2018-01-10
 
 */
 
@@ -1282,11 +1282,16 @@ function showphotos() {
   if(!$result=$db->query($sql)){cl($sql);cl($db->error);}$row=$result->fetch_assoc();
   return $row['user_showphotos'];
 }
-function getphoto($tm) {
+function getphoto($tm, $size) {
+	global $path;
 	// Don't get photo if user does not have access to photos.
+	if (!$size) { $size = 70; }
 	if (showphotos()) {
 		// TODO: check if tm has a photo
 		// TODO: return the filename of photo
-		return "/gold/photos/$tm.jpg";
+		if (file_exists("$path/photos/$tm.jpg")) {
+			return "<img class='photo' src='/gold/photos/$tm.jpg' width=$size height=$size alt='Photo of $tm'>";
+		}
+		else { return ''; }
 	}
 }

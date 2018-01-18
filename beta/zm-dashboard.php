@@ -16,7 +16,8 @@ function show_module() {
 
 	global $db, $startdate, $sqldater, $currentyear, $currentmonth, $monthy, $contract, $team_id_def;
 
-	echo "<table class='dashboard'>";
+echo "<div class='pad'>";
+echo "<table class='dashboard'>";
 
 	$dksurveys = surveycount("",$team_id_def[5]);
 	$nlsurveys = surveycount("",$team_id_def[7]);
@@ -189,7 +190,7 @@ function show_module() {
 	echo displayvmbox(4,6,round($etr[se]*100,1));
 	echo "</tr>\n";
 	echo "</table>\n";
-	echo "</div>\n";
+	echo "</div></div>\n";
 }
 
 function displayvmbox ($dvm_team, $dvm_metric, $dvm_value) {

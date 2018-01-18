@@ -22,7 +22,6 @@ function show_module() {
 		if ($view_startdate_month != $view_enddate_month){
 			echo "<script>location.href='?a=$a&b=$b&c=$c&d=$c&e=$c&startdate=$view_startdate&enddate=$view_enddate';</script>";
 		}
-		echo "<h2><i class='em em-moneybag'></i> Month: " . $month[$view_startdate_month]." $view_startdate_year</h2>";
 		if(ismgr()){
 			if ($_GET[c]=='saved'){
 				for($x=1;$x<=$_GET[tms];$x++){
@@ -53,9 +52,12 @@ function show_module() {
 		}
 		if(1) {
 			$showphoto = showphotos();
+			echo "<div class='pad'>";
+			echo "<div class='before'></div>";
+			echo "<div class=title><i class='em em-moneybag'></i> Month: " . $month[$view_startdate_month]." $view_startdate_year</div>";
 			echo "<table class='sortable tabler' cellpadding=0 cellspacing=0>";
-			echo "<thead><tr>
-			<th width=10>Position</th>";
+			echo "<thead><tr>";
+			echo "<th width=10>Position</th>";
 			if ($showphoto) {
 				echo "<th width=32>Photo</th>";
 			}
@@ -181,7 +183,7 @@ function show_module() {
 						echo "<td>$counti</td>";
 
 						if ($showphoto) {
-							echo "<td class='photo'><img src='" . getphoto($tm) . "'></td>";
+							echo "<td>" . getphoto($tm) . "</td>";
 						}
 
 						// Name
@@ -333,6 +335,7 @@ function show_module() {
 				echo "</tr>";
 				echo "</tfoot>";
 				echo "</table>";
+				echo "</div>";
 				if(ismgr()){
 					if ($b=='e'){
 						echo "<input type=submit><input type=hidden name=c value='saved'><input type=hidden name=a value=$a><input type=hidden name=b value=$b>

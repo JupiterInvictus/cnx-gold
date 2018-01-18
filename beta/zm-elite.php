@@ -6,6 +6,9 @@ function show_module() {
 	if ($team > 0) {
 		echo "<h1>Team " . getteamname($team) . "</h1>";
 	}
+	else { echo "<h1>Belfast</h1>"; }
+
+	echo "<div class='pad players'>";
 
 	$statement = "SELECT id, title, left_or_right FROM titles";
 	if (!$result = $db->query($statement)) {
@@ -76,41 +79,62 @@ function show_module() {
 		$teammate['guildname'][$row['teammate_nt_id']] = g("teams","team_name",$teammate['guild'][$row['teammate_nt_id']]);
 
 	}
+	arsort($teammate['rank']);
+	$threshold = 0;
+	foreach ($teammate['rank'] as $ntid => $level) {
+		if ($teammate['surveys'][$ntid] > $threshold) {
+			if (($team < 1) or (guessteam($ntid) == $team)) {
+				if ($teammate['level'][$ntid] >= 0) {
+					$r = round($teammate['rank'][$ntid],0);
+					if (($r != $oldrank) && ($r < 11)) {
+						echo "<div class='clearer'>".($r);
+						$ri = "";
+						if ($r == 10) { $ri = 'angel'; }
+						if ($r == 9) { $ri = 'crown'; }
+						if ($r == 8) { $ri = 'astonished'; }
+						if ($r == 7) { $ri = 'trophy'; }
+						if ($r == 6) { $ri = '--1'; }
+						if ($r == 5) { $ri = 'male-factory-worker'; }
+						if ($r == 4) { $ri = 'anguished'; }
+						if ($r == 3) { $ri = 'cold_sweat'; }
+						if ($r == 2) { $ri = '-1'; }
+						if ($r == 1) { $ri = 'confounded'; }
+						echo "</div>";
+					}
+					$oldrank = $r;
+					$fgcolor = g("teams","team_fgcolor",$teammate['guild'][$ntid]);
+					$bgcolor = g("teams","team_bgcolor",$teammate['guild'][$ntid]);
+					$brcolor = g("teams","team_border",$teammate['guild'][$ntid]);
+					$iso = '';
+					if ($teammate['guildname'][$ntid] == 'Denmark') { $iso = 'flag-dk'; }
+					if ($teammate['guildname'][$ntid] == 'Netherlands') { $iso = 'flag-nl'; }
+					if ($teammate['guildname'][$ntid] == 'Norway') { $iso = 'flag-no'; }
+					if ($teammate['guildname'][$ntid] == 'Sweden') { $iso = 'flag-se'; }
+					if ($teammate['guild'][$ntid] == '15') { $iso = 'gb'; }
+					echo "<div class='player' style='background: #$bgcolor; color: #$fgcolor;'>";
+					echo "<div class='player-photo'>";
+					echo getphoto($ntid, 32);
+					echo "</div>";
 
-arsort($teammate['rank']);
-$threshold = 1;
-foreach ($teammate['rank'] as $ntid => $level) {
-	if ($teammate['surveys'][$ntid] > $threshold) {
-		if (($team < 1) or (guessteam($ntid) == $team)) {
-			if ($teammate['level'][$ntid] >= 0) {
-				$r = round($teammate['rank'][$ntid],0);
-				if ($r != $oldrank) { echo "<div class='clearer'></div>";}
-				$oldrank = $r;
-				//$surveyratio = round(($teammate['goodsurveys'][$ntid]/$totalgoodsurveys * 70), 0);
-				$fgcolor = g("teams","team_fgcolor",$teammate['guild'][$ntid]);
-				$bgcolor = g("teams","team_bgcolor",$teammate['guild'][$ntid]);
-				$brcolor = g("teams","team_border",$teammate['guild'][$ntid]);
-				echo "<div class='player' style='background: #$bgcolor; color: #$fgcolor; box-shadow: 0 0 15px #$bgcolor;'>";
-				$title = "";
-				$title = "<span class='player-rank' style='background: #$fgcolor; color: #$bgcolor;'>";
-				$title .= $titles[$ranks[$r]['titleid']]['title'];
-				$title .= "</span>\n";
-			echo "<div class='player-name'>";
-			if ($titles[$ranks[$r]['titleid']]['left_or_right'] == 'left') { echo $title; }
-			//echo "<a href='?a=surveys&c=Teammate_NT_ID&d=$ntid'>";
-			echo "{$teammate['name'][$ntid]}";
-			//echo "</a>";
-			if ($titles[$ranks[$r]['titleid']]['left_or_right'] == 'right') { echo ", " . $title; }
-			echo "</div>";
-			echo "<div class='player-guild' style='color: #$fgcolor;'>{$teammate['guildname'][$ntid]}</div>\n";
-			echo "<div class='player-level'>" . round($teammate['level'][$ntid],0) . "</div>\n";
-			echo "<div class='player-description'></div>\n";
-			echo "</div>";
-		}
+					echo "<div class='player-row'>";
+						echo "<div class='player-rank'>";
+							echo "<i class='em em-$ri'></i>";
+							echo "</div>";
+							echo "<div class='player-guild'>";
+							echo "<i class='em em-$iso'></i>";
+							echo "</div>";
+
+						echo "<div class='player-level'>";
+							echo round($teammate['level'][$ntid], 0);
+							echo "</div>";
+							echo "<div class='player-name'>";
+							echo $teammate['name'][$ntid];
+							echo "</div>";
+						echo "</div>";
+					echo "</div>";
+				}
+			}
 		}
 	}
-}
-//echo "$total_contacts_handled";
-echo "<div class='clearer'></div>";
-
+	echo "</div>";
 }

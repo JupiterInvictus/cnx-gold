@@ -13,9 +13,18 @@ h1 {
 	letter-spacing: -0.10rem;
 	word-spacing: 0.5rem;
 }
-
+.before {
+	background: linear-gradient(to right,  #005293 0%,#fecb00 100%);
+	width: 100%;
+	height: 0.5rem;
+	top: 0;
+	left: 0;
+	content: '';
+	display: block;
+	position: absolute;
+}
 button {
-	background: linear-gradient(to bottom,  hsl(200, 100%, 50%) 0%,hsl(230, 100%, 50%) 100%);
+	background: linear-gradient(to bottom,  hsl(0, 0%, 65%) 0%,hsl(0, 0%, 30%) 100%);
 	color: #fff;
 	padding: .625rem 2rem;
 	border-radius: 5px;
@@ -27,7 +36,7 @@ button {
 	cursor: pointer;
 }
 button:hover {
-	background: linear-gradient(to bottom,  hsl(210, 100%, 50%) 0%,hsl(250, 100%, 50%) 100%);
+	background: linear-gradient(to bottom,  hsl(0, 0%, 75%) 0%,hsl(0, 0%, 40%) 100%);
 }
 
 a {
@@ -64,65 +73,73 @@ input, select {
 	font-family: 'Lato', sans-serif, helvetica;
 	font-size: 1.0em;
 	border: 0;
-	acolor: #def;
-	abackground: #083e69;
-	background: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.3);
 	color: rgba(255, 255, 255, 0.7);
 	padding: 1rem;
 	border-radius: 5px;
 }
+input:hover,select:hover {
+background: rgba(0, 0, 0, 0.7);
+}
 
+.players {
+	width: 30rem;
+}
 .player {
+	border-radius: 7px;
+	font-size: 1rem;
+	font-weight: normal;
 	float: left;
-	padding-left: 5px;
-	padding-right: 20px;
-	padding-top: 10px;
-	padding-bottom: 15px;
-	margin-left: -5px;
-	margin-top: -10px;
-	border-radius: 10px;
-	font-size: 0.9em;
-	box-sizing: border-box;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+	margin-right: 2.5rem;
+	z-index: 1;
 }
 .player:hover {
-	background-color: rgb(0, 0, 0);
-	cursor: pointer;
-	box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+	transform: translateY(-3px);
+	z-index: 11;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
-.player-name {
+.player-row {
+}
+.player-photo {
 	float: left;
-	font-size: 1.25em;
-	font-weight: bold;
-	position: relative;
+	position: absolute;
+	margin-left: -2rem;
+	margin-top: -0.3rem;
+	padding-right: 0.2rem;
 }
+
 .player-rank {
-	color: rgba(255, 255, 255, 0.9);
-	text-align: left;
-	border-radius: 5px;
-	padding: 5px;
-	margin-right: 5px;
-	margin-top: 15px;
+	font-size: 0.8rem;
+	padding-right: 0.5rem;
+	display: inline-block;
 }
 .player-guild {
-	padding-top: 5px;
-	clear: both;
+	font-size: 0.9rem;
+	padding-right: 0.5rem;
+	display: inline-block;
 }
 .player-level {
-	clear: left;
-	float: left;
-	color: #fff;
-	text-shadow: 0 0 3px rgba(0,0,0,0.9), 0 0 7px rgba(255,255,255,1);
-}
-.player-description {
-	padding-left: 5px;
+	font-size: 0.9rem;
+	color: rgba(255, 255, 255, 0.45);
+	padding-right: 0.3rem;
 	display: inline-block;
-	color: #ffa;
+	letter-spacing: -0.1rem;
 }
+
+.player-name {
+	font-size: 0.9rem;
+	font-weight: bold;
+	letter-spacing: -0.05rem;
+	display: inline-block;
+	clear: right;
+	padding-right: 0.4rem;
+}
+
 .clearer {
-	padding-top: 40px;
+	padding-bottom: 0.5rem;
 	display: block;
 	clear: both;
-	float: none;
 }
 
 .searchfield {
@@ -133,17 +150,13 @@ input, select {
 	display: block;
 	position: fixed;
 	left: 0px;
-	top: 10vh;
+	top: 6rem;
 	height: 100%;
 	color: #888;
 	background: #ccc;
-	font-size: 4vh;
+	font-size: 2.4rem;
 	z-index: 1;
 	user-select: none;
-	aopacity: 0;
-}
-.div_left_areasmall:hover {
-	opacity: 1;
 }
 
 .leftinfo {
@@ -167,11 +180,9 @@ input, select {
 	cursor: pointer;
 }
 .leftchoicesmall:hover {
-	position: relative;
 	user-select: none;
-	background-color: #005293;
-	color: #fecb00;
-	text-shadow: 0 0 30px #fff;
+	color: rgba(0, 0, 0, 0.8);
+	atext-shadow: 0 0 30px #fff;
 }
 
 .topleftcorner {
@@ -181,9 +192,8 @@ input, select {
 .new-logo {
 	position: absolute;
 	top: 50%;
-	left: 80px;
-	width: 110px;
-	transform: translate(-50%,-50%);
+	left: 1vw;
+	transform: translate(0,-50%);
 	z-index: 100;
 }
 
@@ -198,7 +208,6 @@ input, select {
 .new-logo .logo-text a {
 	text-decoration: none;
 	color: #fecb00;
-	//text-shadow: 0 0 10px #fecb00, 0 0 7px #000;
 	text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 .new-logo .logo-colors {
@@ -227,31 +236,30 @@ input, select {
 	float: left;
 }
 .new-logo .gold-ball {
-	width: 22px;
-	height: 22px;
+	width: 15px;
+	height: 18px;
 	border-radius: 100%;
 	background: #fecb00;
 	position: relative;
-	top: -33px;
-	left: 26px;
+	top: -32px;
+	left: 29px;
 }
 
 
 .area_titlesmall {
-	font-size: 1.2vw;
+	font-size: 1.7rem;
 	font-weight: bold;
 	color: rgba(255,255,255,0.5);
 	position: absolute;
 	top: 50%;
 	transform: translate(0,-50%);
-	left: 12rem;
+	left: 12vw;
 	text-transform: capitalize;
 	z-index: 100;
 	text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 .area_titlesmall .fa {
 	display: inline-block;
-	awidth: 3.5vw;
 	text-align: right;
 
 }
@@ -269,8 +277,9 @@ input, select {
 	user-select: none;
 	right: 50%;
 	top: 50%;
-	font-size: 8pt;
+	font-size: 7pt;
 	text-align: center;
+	color: rgba(255, 255, 255, 0.5);
 	text-transform: uppercase;
 }
 .startdatepicker input {
@@ -286,7 +295,8 @@ input, select {
 	user-select: none;
 	left: 50%;
 	top: 50%;
-	font-size: 8pt;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 7pt;
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -301,12 +311,15 @@ input, select {
 	background-color: #666;
 	user-select: none;
 	position: fixed;
-	width: 100vw;
-	height: 10vh;
+	height: 5.7rem;
 	z-index: 10;
-	box-shadow: 0 5px 20px rgba(100,100,100,0.4);
-	left: 0;
+	box-shadow: 0 2px 3px 0 rgba(0,0,0,.075);
+	border-bottom: 5px solid rgba(0, 0, 0, 0.2);
+	border-bottom-left-radius: 0rem;
+	border-bottom-right-radius: 50%;
+	left: 0.2rem;
 	top: 0;
+	right: 0.2rem;
 }
 .preferred-team {
 	transform: translateY(-60%);
@@ -315,7 +328,8 @@ input, select {
 	user-select: none;
 	right: 50px;
 	top: 50%;
-	font-size: 8pt;
+	font-size: 7pt;
+	color: rgba(255, 255, 255, 0.5);
 	text-transform: uppercase;
 }
 .preferred-team select {
@@ -325,7 +339,7 @@ input, select {
 }
 
 .prevmonthsmall {
-	transform: translate(-20vw, -50%);
+	transform: translate(-22vw, -50%);
 	position: absolute;
 	user-select: none;
 	font-size: 0.8rem;
@@ -336,10 +350,8 @@ input, select {
 .prevmonthsmall a {
 	color: rgba(255, 255, 255, 0.7);
 }
-.prevmonthsmall a:hover {
-}
 .nextmonthsmall {
-	transform: translate(20vw, -50%);
+	transform: translate(22vw, -50%);
 	position: absolute;
 	text-align: right;
 	user-select: none;
@@ -351,8 +363,6 @@ input, select {
 .nextmonthsmall a {
 		color: rgba(255, 255, 255, 0.7);
 }
-.nextmonthsmall a:hover {
-}
 .lastsevendays{
 	display: none;
 }
@@ -362,6 +372,7 @@ input, select {
 	user-select: none;
 	left: 50vw;
 	top: 50%;
+	font-size: 0.9rem;
 }
 
 .bigthing {
@@ -428,7 +439,7 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
 	font-size: 3vw;
 	letter-spacing: -0.08em;
 	padding-top: 2vh;
-	width: 15vw;
+	#width: 15vw;
 	font-weight: bold;
 	border-left: 1px solid #eee;
 }
@@ -455,13 +466,19 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
 }
 
 table {
-	border-spacing: 0;
-	margin-bottom: 5em;
-	padding: 1rem;
-	border-radius: 5px;
+}
+
+.pad {
 	background: #fff;
-	abox-shadow: 0 3px 10px rgba(100,100,100,0.2);
+	border-radius: 5px;
+	padding: 2rem;
 	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.075);
+	position: relative;
+	overflow: hidden;
+}
+.pad .title {
+	color: #222;
+	font-size: 1.5rem;
 }
 table.sortable tbody {
     counter-reset: sortabletablescope;
@@ -509,8 +526,9 @@ td {
 	text-align: left;
 	padding-right: 10px;
 	padding-left: 10px;
-	padding-bottom: 0px;
-	padding-top: 0px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	box-sizing: border-box;
 }
 tr:nth-child(even) {
 	background: rgba(0, 0, 0, 0.03);
@@ -526,11 +544,13 @@ tr:hover {
 .valuearea {
 	letter-spacing: -0.04em;
 	box-sizing: border-box;
-	padding-bottom: 2.5vw;
-	padding-top: 2.5vw;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
 	text-align: center;
-	font-size: 2em;
+	box-sizing: border-box;
+	font-size: 1.5em;
 	display: block;
+	box-shadow: 1px 0 1px 0 rgba(0,0,0, .1);
 }
 
 
@@ -775,15 +795,9 @@ td.issues {
 	width: 100%;
 }
 
-td.photo {
-}
-
-td.photo img {
-	width: 60px;
-	height: 60px;
+img.photo {
 	border-radius: 50%;
-	filter: brightness(1.5) saturate(0);
-
+	filter: brightness(1.4) saturate(0);
 }
 
 
@@ -899,9 +913,6 @@ mobile screens
 		padding: 0;
 		top: 0;
 	}
-	.leftchoicesmall:hover {
-		top: 0;
-	}
 
 	.div_right_areasmall {
 		box-sizing: border-box;
@@ -928,10 +939,6 @@ mobile screens
 
 	.area_titlesmall a {
 		color: #fff;
-	}
-
-	.area_titlesmall a:hover {
-		color: #ccc;
 	}
 
 	table .dashboard {
